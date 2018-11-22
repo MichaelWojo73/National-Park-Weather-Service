@@ -1,0 +1,106 @@
+﻿@model IList<DailyWeatherFile>
+@{
+    ViewData["Title"] = "Weather";
+
+    Dictionary<string, string> weatherAdvice = new Dictionary<string, string>();
+    weatherAdvice.Add("snow", "Pack snowshoes");
+    weatherAdvice.Add("rain", "Pack your rain gear and wear your waterproof shoes");
+    weatherAdvice.Add("thunderstorms", "Seek shelter and avoid hiking on exposed ridges");
+    weatherAdvice.Add("sunny", "Pack your sunblock");
+
+    double high = 0.00;
+    double low = 0.00;
+
+
+
+}
+
+<section class="centeredPanel">
+    <h2>Weather Forecast</h2>
+    <table class="table">
+        <tbody>
+            @foreach (var day in Model)
+            {
+
+                <tr>
+
+                    <td>
+                        <form method="get" asp-controller="Home">
+
+                            @if (day.Day == 1)
+                            {
+                                <p id="Today"><strong>Today</strong></p>
+                            }
+
+                            <img id="weatherImage" src="~/images/@(day.Forecast).png" alt="an image of @day.Forecast" />
+
+
+                            <p><strong>High:</strong> @day.High</p>
+
+                            <p>
+                                <strong>Low:</strong> @day.Low
+                            </p>
+                            <p>
+                                <strong>Forecast:</strong> @day.Forecast
+                            </p>
+                            <p>
+                                @if (day.Forecast != "cloudy" && day.Forecast != "partly cloudy")
+                                {
+                                    <div class="weatherForecastAdvice">
+                                        @weatherAdvice[day.Forecast]
+                                    </div>
+                                }
+                        </p>
+
+                        <div class="weatherAdvice">
+                            @if (day.Degree == "F")
+                            {
+                                @if (day.High > 75)
+                                {
+                                    <p>Bring an extra gallon of water</p>
+                                }
+
+                                @if ((int)(day.High - day.Low) > 20)
+                                {
+                                    <p>Wear your breathable layers </p>
+                                }
+
+                                @if (day.Low < 20)
+                                {
+                                    <p>Please stay inside due to the dangers of exposure to frigid temperatures</p>
+                                }
+                            }
+                            else
+                            {
+                                high = ((day.High * 1.8) + 32);
+                                low = ((day.Low * 1.8) + 32);
+
+                                @if (high > 75)
+                                {
+                                    <p>Bring an extra gallon of water</p>
+                                }
+
+                                @if ((int)(high - low) > 20)
+                                {
+                                    <p>Wear your breathable layers </p>
+                                }
+
+                                @if (low < 20)
+                                {
+                                    <p>Please stay inside due to the dangers of exposure to frigid temperatures</p>
+                                }
+                            }
+
+                        </div>
+
+                    </form>
+                </td>
+            </tr>
+
+        }
+        </tbody>
+
+
+    </table>
+
+</section>

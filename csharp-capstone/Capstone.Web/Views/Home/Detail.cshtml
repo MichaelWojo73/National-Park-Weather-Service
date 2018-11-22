@@ -1,0 +1,81 @@
+﻿@model Park
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<section class="centeredPanel">
+   <h2>   </h2>
+    <table class="table table-bordered">
+        <tbody>
+
+            <tr>
+
+                <td>
+                    <h3><strong>@Model.ParkName</strong></h3>
+
+                    <p>
+                        <strong>@Model.State</strong>
+                    </p>
+
+                    <img id="parkImage2" src="~/images/@(Model.ParkCode).jpg" alt="an image of @Model.ParkName" />
+
+
+
+                    <p class="desc">
+                        @Model.Description
+                    </p>
+                    <p>
+                        <strong>Acreage:</strong> @Model.Acreage
+                    </p>
+                    <p>
+                        <strong>Elevation in feet:</strong> @Model.ElevationInFeet
+                    </p>
+                    <p>
+                        <strong>Miles of Trails:</strong> @Model.MilesOfTrail
+                    </p>
+                    <p>
+                        <strong>Number of Campsites:</strong> @Model.NumberOfCampsites
+                    </p>
+                    <p>
+                        <strong>Climate:</strong> @Model.Climate
+                    </p>
+                    <p>
+                        <strong>Year Founded:</strong> @Model.YearFounded
+                    </p>
+                    <p>
+                        <strong>Annual Visitor Count:</strong> @Model.AnnualVisitorCount
+                    </p>
+                    <p>
+                        <strong>Quote:</strong> @Model.Quote
+                    </p>
+                    <p>
+                        <strong>Quote Source:</strong> @Model.QuoteSource
+                    </p>
+                    <p>
+                        <strong>Entry Fee:</strong> $@Model.EntryFee
+                    </p>
+                    <p>
+                        <strong>Number of Animal Species:</strong> @Model.NumberOfAnimalSpecies
+                    </p>
+
+
+                    <form method="post" asp-controller="Home" asp-action="weather"
+                          asp-route-id="@Model.ParkCode">
+                        Fahrenheit:  @Html.RadioButton("Degree", "F")
+                        Celsius:  @Html.RadioButton("Degree", "C")
+                        <input type="submit" value="Click here for the Daily Weather" />
+
+
+                    </form>
+
+                </td>
+            </tr>
+
+
+        </tbody>
+
+
+    </table>
+
+</section>
+

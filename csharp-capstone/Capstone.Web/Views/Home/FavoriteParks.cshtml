@@ -1,0 +1,41 @@
+﻿@model IList<Survey>
+@{
+    ViewData["Title"] = "FavoriteParks";
+}
+
+<section class="centeredPanel">
+    <h2>Favorite National Parks</h2>
+    
+    <p class="Pop">Voted by YOU, the fans.  Here are the top National Parks!</p>
+    <table class="table">
+        <tbody>
+            @foreach (var survey in Model)
+            {
+
+                <tr>
+
+                    <td>
+                        
+                            
+                                <img id="parkImage" src="~/images/@(survey.ParkCode).jpg" alt="an image of @survey.ParkCode" />
+                            
+                            <p><strong>@survey.ParkName</strong></p>
+                            <p>
+
+                               
+                                Votes:@survey.Count
+
+                            </p>
+
+
+                        
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+
+
+    </table>
+
+</section>

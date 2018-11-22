@@ -1,0 +1,49 @@
+﻿@model Survey
+@{
+    ViewData["Title"] = "SaveNewSurvey";
+
+}
+
+<h2>National Park Survey</h2>
+<p>Share your feedback with us by completing the survey below!</p>
+
+    <form asp-controller="Home" asp-action="SaveNewSurvey" method="post">
+        <table class="borderless">
+            <tbody>
+                <tr>
+                    <th style="width: 35%"><label asp-for="ParkCode">Favorite National Park</label></th>
+                    <td><select asp-for="ParkCode" asp-items="Survey.nationalPark"></select></td>
+                </tr>
+                <tr>
+                    <th style="width: 35%"><label asp-for="EmailAddress" >Your email</label></th>
+                    <td><input asp-for="EmailAddress" /></td>
+                </tr>
+                <tr>
+                    <th style="width: 35%"><label asp-for="State">State of Residence</label></th>
+                    <td><select asp-for="State" asp-items="Survey.states"></select></td>
+                </tr>
+
+
+                <tr>
+                    <th style="width: 10%"><label asp-for="ActivityLevel">Activity Level</label></th>
+                    <td>
+                        <input type="radio" asp-for="ActivityLevel" value="Inactive"><strong>Inactive</strong>
+                        <input type="radio" asp-for="ActivityLevel" value="Sedentary"><strong>Sedentary</strong>
+                        <input type="radio" asp-for="ActivityLevel" value="Active"><strong>Active</strong>
+                        <input type="radio" asp-for="ActivityLevel" value="Extremely Active"><strong>Extremely Active</strong>
+                    </td>
+
+                </tr>
+
+
+
+
+                <tr>
+                    <th style="width: 25%"></th>
+                    <td><input type="submit" value="Submit Survey" /> </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </form>
+

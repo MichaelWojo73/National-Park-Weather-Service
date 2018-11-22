@@ -1,0 +1,40 @@
+﻿@model IList<Park>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class="centeredPanel">
+   <h2>National Parks</h2>
+    <p>Click a picture to select a park</p>
+    <table id="padthis"class="table">
+        <tbody>
+            @foreach (var park in Model)
+            {
+
+                <tr>
+
+                    <td>
+                        <form method="get" asp-controller="Home" asp-action="detail">
+                            <a asp-controller="Home" asp-action="detail" asp-route-id="@park.ParkCode">
+                                <img id="parkImage" src="~/images/@(park.ParkCode).jpg" alt="an image of @park.ParkName" />
+                            </a>
+                            <p><strong>@park.ParkName</strong></p>
+                            <p>
+                                
+                                    @park.Description
+                                
+
+                            </p>
+
+
+                        </form>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+
+
+    </table>
+
+</section>
